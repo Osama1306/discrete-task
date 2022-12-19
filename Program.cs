@@ -4,80 +4,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace my_code_for_project_1
+namespace perfect_numbers_finder
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             //declaring variables
-            int start, end, number, factor;
-            bool primeOrnot;
-
-
-
-            //prompt user to enter the first number
-            Console.WriteLine("Enter lower bound of the range");
-            start = int.Parse(Console.ReadLine());
+            int number, sum, factorOrnot;
             
 
-            //prompt user to enter the second number
-            Console.WriteLine("Enter upper bound of the range");
+            //taking inputs from user
+            Console.Write("Enter the lower bound of the range : ");
+            int start= int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the upper bound of the range : ");
+            int end = int.Parse(Console.ReadLine());
             
-            end = int.Parse(Console.ReadLine());
-
-
-            //swap both of the numbers if the second number is greater
-            if(start > end)
+            //swap numbers if end is less than start
+            if(end<start)
             {
                 start = start + end;
                 end = start - end;
                 start = start - end;
             }
 
+            Console.WriteLine();
+            Console.WriteLine("The Perfect numbers within this range are : ");
 
-            //print that the prime numbers in the given range are
 
-            Console.WriteLine("prime numbers within this range are: ");
 
-            //loop to ensure that the code works only within the given range
-            for(number= start ; number <= end ; number++ )
+            //loop to iterate within the range only
+            for (number = start; number <= end; number++)
             {
-                //because 1 and 0 are neither prime nor composite
-                if (number == 0 || number == 1)
-                    continue;
-
-                //variable to tell if number is prime or not
-                primeOrnot = true;
-
+                //variable to start factors from 1
+                factorOrnot = 1;
+                //variable to contain sum of factors of the number 
+                sum = 0;
                 
-                for ( factor = 2; factor < number; factor++)
+                while (factorOrnot < number)
                 {
-                   
-                    //condition to check if number is prime
-                    if(number%factor == 0)
-                    {
-                        primeOrnot = false;
-                        break;
-                    }
+                    //condition to find factor
+                    if (number % factorOrnot == 0)
+                        sum = sum + factorOrnot;
+                    factorOrnot++;
                 }
-                
-                //to declare if number is a prime number then we print it
-                if(primeOrnot == true)
-                {
+                if (sum == number)
                     Console.WriteLine(number);
-                }
-
-               
             }
-            
-
-
-
-
-
-
-
 
 
 
